@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalii Vehicul</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container" style="margin-top: 50px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="pannel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="background-color:lightgray;">
+                        <h1 class="panel-title" >Detalii Vehicul</h1>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Marca:</p>
+                                <p th:text="${vehicul.detalii_vehicul!=null ? vehicul.detalii_vehicul.marca:''}"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Model:</p>
+                                <p th:text="${vehicul.detalii_vehicul!=null ? vehicul.detalii_vehicul.model:''}"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Numar roti:</p>
+                                <p th:text="${vehicul.detalii_vehicul!=null ? vehicul.detalii_vehicul.nr_roti:''}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div>
+            <a class="btn btn-primary" role="button" th:href="@{'/vehicul/info/new'}">adauga detalii</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

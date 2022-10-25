@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adauga Vehicul </title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<form th:object="${vehicul}" th:action="@{/vehicul}" method="post" enctype="multipart/form-data">
+    <input type="hidden" th:value="${id_client}" name="id_client"/>
+    <input type="hidden" th:field="*{id}"/>
+
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading" style="background-color:lightgray;">
+                <h1 class="panel-title">Vehicul</h1>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label>Numar de matriculare:</label>
+                        <input type="text" class="form-control" th:field="*{nr_matriculare}"/>
+                    </div>
+<!--                    <div class="col-md-2">-->
+<!--                        <label for="currency">Tip de vehicul: </label>-->
+<!--                        <select id="currency" name="currency" th:field="*{tip}">-->
+<!--                            <option-->
+<!--                                    th:each="tipOpt:${T(com.example.vulcanizare.domain.Tip).values()}"-->
+<!--                                    th:value="${tipOpt}" th:text="${tipOpt.getTip()}">-->
+<!--                            </option>-->
+<!--                        </select>-->
+
+<!--                    </div>-->
+                    <div class="row">
+                        <div class="col-md-3 ">
+                            <div th:if="${vehicul.reparatii= null}" class="row">
+
+                                <div class="col-md-3">
+                                    <label th:for="reparatii">Reparatii</label>
+                                    <ul id="reparatii" style="list-style: none;">
+                                        <li th:each="reparatie: ${reparatiiAll}">
+                                            <input type="text"
+                                                   th:field="*{reparatii}"
+                                                   th:value="${reparatie.id}"/>
+                                            <label
+                                                    th:for="${#ids.prev('reparatii')}"
+                                                    th:text="${reparatie.tip_reparatie}">
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                </div>
+                        <div class="row">
+                            <div class="col-md-3 ">
+                                <div th:if="${vehicul.angajati= null}" class="row">
+
+                                    <div class="col-md-3">
+                                        <label th:for="angajati">Angajati</label>
+                                        <ul id="angajati" style="list-style: none;">
+                                            <li th:each="angajat: ${angajatiAll}">
+                                                <input type="text"
+                                                       th:field="*{angajati}"
+                                                       th:value="${angajat.id}"/>
+                                                <label
+                                                        th:for="${#ids.prev('angajati')}"
+                                                        th:text="${angajat.porecla}">
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                <div class="row">
+
+                    <div class="col-md-7 ml-md-auto">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

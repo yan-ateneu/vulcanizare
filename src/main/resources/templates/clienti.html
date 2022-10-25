@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clienti</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <script src="/webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+Logged user: <span sec:authentication="name">user</span> Roles: <span sec:authentication="principal.authorities">[ROLE_USER]</span>
+<div class="container">
+    <table class="table table-hover ">
+        <thead class="thead-inverse">
+        <tr>
+            <th>ID</th>
+            <th>Nume</th>
+            <th>Prenume</th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tr th:each="client, stat : ${clienti}"
+            th:class="${stat.odd}? 'table-light':'table-dark'"
+        >
+            <td th:text="${client.id}"></td>
+            <td th:text="${client.nume}"></td>
+            <td th:text="${client.prenume}"></td>
+            <td><a href="#" th:href="@{'/client/info/' + ${client.id}}">Detalii</a></td>
+            <td><a href="#" th:href="@{'/vehicul/list/' + ${client.id}}">Vehicule</a></td>
+            <td><a href="#" th:href="@{'/client/update/' + ${client.id}}">Modifica</a></td>
+            <td><a href="#" th:href="@{'/client/delete/' + ${client.id}}">Sterge</a></td>
+        </tr>
+    </table>
+</div>
+<div class="container">
+    <div class="row">
+        <div sec:authorize="hasRole('ADMIN')">
+            <a class="btn btn-primary" role="button" th:href="@{'/client/new'}">adauga client</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-3">
+    <form th:action="@{/logout}" method="POST"> <input type="submit" class="btn btn-primary" value="Logout"> </form>
+</div>
+</body>
+</html>
